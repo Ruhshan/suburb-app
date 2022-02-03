@@ -1,4 +1,4 @@
-package xyx.ruhshan.suburb.core.location;
+package xyx.ruhshan.suburb.core.location.domain;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
