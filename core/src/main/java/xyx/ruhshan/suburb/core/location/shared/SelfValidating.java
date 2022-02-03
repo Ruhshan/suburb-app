@@ -1,4 +1,4 @@
-package xyx.ruhshan.suburb.core.shared;
+package xyx.ruhshan.suburb.core.location.shared;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
@@ -21,7 +21,7 @@ public abstract class SelfValidating<T> {
      * Evaluates all Bean Validations on the attributes of this
      * instance.
      */
-    protected void validateSelf() {
+    public void validateSelf() {
         Set<ConstraintViolation<T>> violations = validator.validate((T) this);
         if (!violations.isEmpty()) {
             throw new ConstraintViolationException(violations);

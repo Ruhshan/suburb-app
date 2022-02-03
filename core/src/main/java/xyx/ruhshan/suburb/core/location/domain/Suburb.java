@@ -5,14 +5,16 @@ import javax.validation.constraints.NotEmpty;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import xyx.ruhshan.suburb.core.shared.SelfValidating;
+import xyx.ruhshan.suburb.core.location.shared.SelfValidating;
 
 @Data
 @AllArgsConstructor
 public class Suburb extends SelfValidating<Suburb> {
-    @NotEmpty
+
+    @NotEmpty(message = "Suburb name is required")
     private String name;
 
-    @Min(0)
+    @Min(value = 0, message = "Suburb postCode must be greater than or equal to 0")
     private Integer postCode;
+
 }
