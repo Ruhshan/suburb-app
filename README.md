@@ -1,4 +1,4 @@
-##How To Test Locally
+## How To Test Locally
 
 ### Clone the repository
 ```bash
@@ -61,7 +61,7 @@ curl --location --request GET 'http://localhost:5000/api/suburbs?start=100&end=8
 http://localhost:5000/v3/swagger-ui/
 
 
-##How To Test From Deployed Heroku
+## How To Test From Deployed Heroku
 
 Replace **http://localhost:5000/api/suburbs** with **https://suburb-app.herokuapp.com/api/suburbs**
 
