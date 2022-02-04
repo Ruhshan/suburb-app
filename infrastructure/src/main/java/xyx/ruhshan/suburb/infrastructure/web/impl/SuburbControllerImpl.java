@@ -34,7 +34,7 @@ public class SuburbControllerImpl extends AbstractController implements SuburbCo
     }
 
     @Override
-    @PostMapping(name="/suburbs", consumes=MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping("/suburbs")
     public SaveSuburbResponse saveSuburbs(@Valid @RequestBody List<SuburbRequest> suburbRequestList) throws InvalidSuburbListException {
         List<Suburb> suburbList = suburbRequestList.stream().map(suburbRestConverter::mapToDomain).collect(Collectors.toList());
         var count = saveSuburbsUseCase.execute(suburbList);

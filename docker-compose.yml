@@ -10,3 +10,15 @@ services:
       POSTGRES_PASSWORD: s1234
     ports:
       - 5234:5432
+  app:
+    build:
+      context: .
+    ports:
+      - '5000:5000'
+    command: java -jar suburb-infra-0.0.1-SNAPSHOT.jar
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/suburb_db
+      - SPRING_PROFILES_ACTIVE=dev
+
