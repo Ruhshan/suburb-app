@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import xyx.ruhshan.suburb.core.location.ports.SuburbRepositoryService;
+import xyx.ruhshan.suburb.core.location.usecase.FetchSuburbsByPostCodeRangeUseCaseImpl;
 import xyx.ruhshan.suburb.core.location.usecase.SaveSuburbsUseCase;
 import xyx.ruhshan.suburb.core.location.usecase.SaveSuburbsUseCaseImpl;
 
@@ -21,7 +22,7 @@ public class UseCaseConfiguration {
     }
 
     @Bean
-    public javax.validation.Validator localValidatorFactoryBean() {
-        return new LocalValidatorFactoryBean();
+    public FetchSuburbsByPostCodeRangeUseCaseImpl fetchSuburbsByPostCodeRangeUseCase(){
+        return new FetchSuburbsByPostCodeRangeUseCaseImpl(suburbRepositoryService);
     }
 }

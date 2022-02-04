@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import xyx.ruhshan.suburb.core.location.domain.Suburb;
 import xyx.ruhshan.suburb.core.location.exception.InvalidSuburbListException;
+import xyx.ruhshan.suburb.core.location.usecase.FetchSuburbsByPostCodeRangeUseCase;
 import xyx.ruhshan.suburb.core.location.usecase.SaveSuburbsUseCase;
 import xyx.ruhshan.suburb.infrastructure.web.SuburbController;
 import xyx.ruhshan.suburb.infrastructure.web.converter.SuburbRestConverter;
@@ -19,10 +20,12 @@ import java.util.stream.Collectors;
 public class SuburbControllerImpl extends AbstractController implements SuburbController  {
     private final SaveSuburbsUseCase saveSuburbsUseCase;
     private final SuburbRestConverter suburbRestConverter;
+    private final FetchSuburbsByPostCodeRangeUseCase fetchSuburbsByPostCodeRangeUseCase;
 
-    public SuburbControllerImpl(SaveSuburbsUseCase saveSuburbsUseCase, SuburbRestConverter suburbRestConverter) {
+    public SuburbControllerImpl(SaveSuburbsUseCase saveSuburbsUseCase, SuburbRestConverter suburbRestConverter, FetchSuburbsByPostCodeRangeUseCase fetchSuburbsByPostCodeRangeUseCase) {
         this.saveSuburbsUseCase = saveSuburbsUseCase;
         this.suburbRestConverter = suburbRestConverter;
+        this.fetchSuburbsByPostCodeRangeUseCase = fetchSuburbsByPostCodeRangeUseCase;
     }
 
     @Override
