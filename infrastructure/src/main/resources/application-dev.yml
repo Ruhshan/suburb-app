@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5234/suburb_db
+    username: suburb_user
+    password: s1234
+    hikari:
+      data-source-properties:
+        stringtype: unspecified
+  jpa:
+    properties.hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate.ddl-auto: validate
