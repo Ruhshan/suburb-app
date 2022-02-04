@@ -1,5 +1,6 @@
 package xyx.ruhshan.suburb.infrastructure.web.impl;
 
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import xyx.ruhshan.suburb.core.location.domain.Suburb;
 import xyx.ruhshan.suburb.core.location.exception.InvalidSuburbListException;
@@ -12,6 +13,7 @@ import xyx.ruhshan.suburb.infrastructure.web.request.SuburbRequest;
 import xyx.ruhshan.suburb.infrastructure.web.response.FetchSuburbResponse;
 import xyx.ruhshan.suburb.infrastructure.web.response.SaveSuburbResponse;
 
+import javax.print.attribute.standard.Media;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,7 +34,7 @@ public class SuburbControllerImpl extends AbstractController implements SuburbCo
     }
 
     @Override
-    @PostMapping("/suburbs")
+    @PostMapping(name="/suburbs", consumes=MediaType.APPLICATION_JSON_VALUE)
     public SaveSuburbResponse saveSuburbs(@Valid @RequestBody List<SuburbRequest> suburbRequestList) throws InvalidSuburbListException {
         List<Suburb> suburbList = suburbRequestList.stream().map(suburbRestConverter::mapToDomain).collect(Collectors.toList());
         var count = saveSuburbsUseCase.execute(suburbList);
