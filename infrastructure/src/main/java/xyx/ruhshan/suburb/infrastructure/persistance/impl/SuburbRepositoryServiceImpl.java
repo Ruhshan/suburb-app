@@ -23,7 +23,8 @@ public class SuburbRepositoryServiceImpl implements SuburbRepositoryService {
     public int saveSuburbs(List<Suburb> suburbList) {
        List<SuburbEntity> suburbEntities = suburbList.stream().map(suburbRepositoryConverter::mapToTable)
                .collect(java.util.stream.Collectors.toList());
-       var result = suburbRepository.saveAll(suburbEntities);suburbEntities.stream().map(suburbRepository::save);
+
+       var result = suburbRepository.saveAll(suburbEntities);
        return result.size();
     }
 
