@@ -1,15 +1,15 @@
 package xyx.ruhshan.suburb.infrastructure.web.impl;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import xyx.ruhshan.suburb.core.location.domain.Suburb;
 import xyx.ruhshan.suburb.core.location.exception.InvalidSuburbListException;
+import xyx.ruhshan.suburb.core.location.usecase.CountCharactersInStringListUseCase;
 import xyx.ruhshan.suburb.core.location.usecase.FetchSuburbsByPostCodeRangeUseCase;
 import xyx.ruhshan.suburb.core.location.usecase.SaveSuburbsUseCase;
 import xyx.ruhshan.suburb.infrastructure.web.SuburbController;
 import xyx.ruhshan.suburb.infrastructure.web.converter.SuburbRestConverter;
 import xyx.ruhshan.suburb.infrastructure.web.request.SuburbRequest;
+import xyx.ruhshan.suburb.infrastructure.web.response.FetchSuburbResponse;
 import xyx.ruhshan.suburb.infrastructure.web.response.SaveSuburbResponse;
 
 import javax.validation.Valid;
@@ -21,11 +21,14 @@ public class SuburbControllerImpl extends AbstractController implements SuburbCo
     private final SaveSuburbsUseCase saveSuburbsUseCase;
     private final SuburbRestConverter suburbRestConverter;
     private final FetchSuburbsByPostCodeRangeUseCase fetchSuburbsByPostCodeRangeUseCase;
+    private final CountCharactersInStringListUseCase countCharactersInStringListUseCase;
 
-    public SuburbControllerImpl(SaveSuburbsUseCase saveSuburbsUseCase, SuburbRestConverter suburbRestConverter, FetchSuburbsByPostCodeRangeUseCase fetchSuburbsByPostCodeRangeUseCase) {
+    public SuburbControllerImpl(SaveSuburbsUseCase saveSuburbsUseCase, SuburbRestConverter suburbRestConverter,
+                                FetchSuburbsByPostCodeRangeUseCase fetchSuburbsByPostCodeRangeUseCase, CountCharactersInStringListUseCase countCharactersInStringListUseCase) {
         this.saveSuburbsUseCase = saveSuburbsUseCase;
         this.suburbRestConverter = suburbRestConverter;
         this.fetchSuburbsByPostCodeRangeUseCase = fetchSuburbsByPostCodeRangeUseCase;
+        this.countCharactersInStringListUseCase = countCharactersInStringListUseCase;
     }
 
     @Override
@@ -35,5 +38,13 @@ public class SuburbControllerImpl extends AbstractController implements SuburbCo
         var count = saveSuburbsUseCase.execute(suburbList);
 
         return new SaveSuburbResponse(count);
+    }
+
+    @Override
+    @GetMapping("/suburbs")
+    public FetchSuburbResponse fetchSuburbsByPostCodeRange(@RequestParam Integer start, @RequestParam Integer end) {
+        List<String> suburbList = fetchSuburbsByPostCodeRangeUseCase.execute(start, end);
+        var count = countCharactersInStringListUseCase.execute(suburbList);
+        return new FetchSuburbResponse(suburbList, count);
     }
 }

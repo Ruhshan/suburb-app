@@ -4,9 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import xyx.ruhshan.suburb.core.location.ports.SuburbRepositoryService;
-import xyx.ruhshan.suburb.core.location.usecase.FetchSuburbsByPostCodeRangeUseCaseImpl;
-import xyx.ruhshan.suburb.core.location.usecase.SaveSuburbsUseCase;
-import xyx.ruhshan.suburb.core.location.usecase.SaveSuburbsUseCaseImpl;
+import xyx.ruhshan.suburb.core.location.usecase.*;
 
 @Configuration
 public class UseCaseConfiguration {
@@ -24,5 +22,10 @@ public class UseCaseConfiguration {
     @Bean
     public FetchSuburbsByPostCodeRangeUseCaseImpl fetchSuburbsByPostCodeRangeUseCase(){
         return new FetchSuburbsByPostCodeRangeUseCaseImpl(suburbRepositoryService);
+    }
+
+    @Bean
+    CountCharactersInStringListUseCaseImpl countCharactersInStringListUseCase(){
+        return new CountCharactersInStringListUseCaseImpl();
     }
 }

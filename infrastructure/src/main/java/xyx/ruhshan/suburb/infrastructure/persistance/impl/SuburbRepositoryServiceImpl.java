@@ -29,6 +29,8 @@ public class SuburbRepositoryServiceImpl implements SuburbRepositoryService {
 
     @Override
     public List<Suburb> findAllSuburbsByPostcodeRange(Integer startPostcode, Integer endPostcode) {
-        return null;
+        var result =  suburbRepository.findByPostcodeBetween(startPostcode, endPostcode);
+        return result.stream().map(suburbRepositoryConverter::mapToDomain).collect(java.util.stream.Collectors.toList());
+
     }
 }
