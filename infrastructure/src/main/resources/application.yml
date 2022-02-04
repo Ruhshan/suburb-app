@@ -5,6 +5,9 @@ spring:
   flyway:
     placeholder-replacement: false
 
+server:
+  port: ${PORT:5000}
+
 springdoc:
   swagger-ui:
     path: /v3/swagger-ui

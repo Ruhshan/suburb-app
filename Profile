@@ -1,0 +1,1 @@
+web: java -jar target/suburb-infra-0.0.1-SNAPSHOT.jar
