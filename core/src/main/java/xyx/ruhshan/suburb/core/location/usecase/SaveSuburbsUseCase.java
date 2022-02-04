@@ -6,5 +6,5 @@ import xyx.ruhshan.suburb.core.location.exception.InvalidSuburbListException;
 import java.util.List;
 
 public interface SaveSuburbsUseCase {
-    void execute(List<Suburb> suburbList) throws InvalidSuburbListException;
+    int execute(List<Suburb> suburbList) throws InvalidSuburbListException;
 }

@@ -2,7 +2,7 @@ create table suburb
 (
     id       bigserial    not null primary key,
     name     varchar(255) not null,
-    postcode integer      not null
+    postcode integer      not null unique
 
 );
 

@@ -1,9 +1,11 @@
 package xyx.ruhshan.suburb.infrastructure.persistance.converter;
 
+import org.springframework.stereotype.Service;
 import xyx.ruhshan.suburb.core.location.domain.Suburb;
 import xyx.ruhshan.suburb.infrastructure.persistance.entities.SuburbEntity;
 import xyx.ruhshan.suburb.infrastructure.shared.RepositoryConverter;
 
+@Service
 public class SuburbRepositoryConverter implements RepositoryConverter<SuburbEntity, Suburb> {
 
     @Override

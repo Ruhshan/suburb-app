@@ -18,14 +18,14 @@ public class SaveSuburbsUseCaseImpl implements SaveSuburbsUseCase {
     }
 
     @Override
-    public void execute(List<Suburb> suburbList) throws InvalidSuburbListException {
+    public int execute(List<Suburb> suburbList) throws InvalidSuburbListException {
         try {
             suburbList.forEach(Suburb::validateSelf);
         }catch (ConstraintViolationException e) {
             throw new InvalidSuburbListException(e.getMessage());
         }
 
-        suburbRepositoryService.saveSuburbs(suburbList);
+        return suburbRepositoryService.saveSuburbs(suburbList);
 
 
     }

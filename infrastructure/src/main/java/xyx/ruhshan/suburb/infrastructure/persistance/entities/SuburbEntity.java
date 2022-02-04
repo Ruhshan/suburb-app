@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -21,13 +22,11 @@ public class SuburbEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @NotEmpty
+    @NotBlank
     @Column(name = "name")
     private String name;
 
     @NotNull
-    @NotEmpty
     @Column(name = "postcode", unique = true)
     private Integer postcode;
 
